@@ -1,0 +1,10 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+*.ttf
+*.import
+.import/
+.mono/
+project_metadata.cfg
+.DS_Store
+Thumbs.db

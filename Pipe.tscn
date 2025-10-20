@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://qsrfj22dhy27"]
+
+[ext_resource type="Script" uid="uid://dvo2frmwumb2b" path="res://PipeController.cs" id="1_i7ucc"]
+[ext_resource type="Texture2D" uid="uid://ci51uuy8d42lu" path="res://pipe.png" id="3_yifoh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqn5b"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7ucc"]
+size = Vector2(16, 2000)
+
+[node name="Pipe" type="Node2D"]
+script = ExtResource("1_i7ucc")
+
+[node name="TopPipe" type="StaticBody2D" parent="."]
+
+[node name="TopPipeSprite" type="Sprite2D" parent="TopPipe"]
+texture_filter = 1
+texture = ExtResource("3_yifoh")
+centered = false
+
+[node name="TopCollision" type="CollisionShape2D" parent="TopPipe"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_xqn5b")
+
+[node name="BottomPipe" type="StaticBody2D" parent="."]
+
+[node name="BottomPipeSprite" type="Sprite2D" parent="BottomPipe"]
+texture_filter = 1
+texture = ExtResource("3_yifoh")
+centered = false
+
+[node name="BottomCollision" type="CollisionShape2D" parent="BottomPipe"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_xqn5b")
+
+[node name="ScoreCollision" type="Area2D" parent="."]
+
+[node name="ScoreCollisionShape" type="CollisionShape2D" parent="ScoreCollision"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_i7ucc")
+debug_color = Color(0.87901145, 0.24287003, 0.60419047, 0.41960785)

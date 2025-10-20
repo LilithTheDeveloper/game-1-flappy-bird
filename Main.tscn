@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://c124j7bs8o066"]
+
+[ext_resource type="Script" uid="uid://c5ccvi1aiej8o" path="res://Startup.cs" id="1_fos0i"]
+[ext_resource type="Script" uid="uid://c4kmguhaslee4" path="res://Bird.cs" id="1_r0du0"]
+[ext_resource type="Texture2D" uid="uid://yl2fvj6vp8ng" path="res://bird.png" id="2_cm0pq"]
+[ext_resource type="Script" uid="uid://botr6h8xw44ey" path="res://Spawner.cs" id="3_fos0i"]
+[ext_resource type="PackedScene" uid="uid://qsrfj22dhy27" path="res://Pipe.tscn" id="5_fos0i"]
+[ext_resource type="Texture2D" uid="uid://lx4j2gjr0ufd" path="res://background.png" id="6_3dxm6"]
+[ext_resource type="FontFile" uid="uid://dvu2gl7eo3nx3" path="res://Micro5-Regular.ttf" id="7_lgr22"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_epypp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
+radius = 9.356936
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_fos0i")
+
+[node name="Bird" type="CharacterBody2D" parent="." node_paths=PackedStringArray("gameOverLabel", "scoreLabel") groups=["Player"]]
+material = SubResource("CanvasItemMaterial_epypp")
+position = Vector2(66.00001, 278.00003)
+scale = Vector2(2.7868948, 2.7868948)
+script = ExtResource("1_r0du0")
+gameOverLabel = NodePath("../GameOver")
+scoreLabel = NodePath("../Score")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird" groups=["Player"]]
+shape = SubResource("CircleShape2D_0e48y")
+debug_color = Color(0.71481377, 0.45637304, 0.4402066, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bird" groups=["Player"]]
+texture_filter = 1
+scale = Vector2(1.25, 1.1875)
+texture = ExtResource("2_cm0pq")
+flip_h = true
+
+[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("bird")]
+position = Vector2(1151, 0)
+script = ExtResource("3_fos0i")
+bird = NodePath("../Bird")
+pipeScene = ExtResource("5_fos0i")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(653.99994, 206)
+scale = Vector2(-1.3054602, 0.880945)
+texture = ExtResource("6_3dxm6")
+
+[node name="GameOver" type="Label" parent="."]
+offset_left = 451.0
+offset_top = 206.0
+offset_right = 503.0
+offset_bottom = 279.0
+theme_override_fonts/font = ExtResource("7_lgr22")
+theme_override_font_sizes/font_size = 72
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+offset_left = 596.0
+offset_right = 648.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("7_lgr22")
+theme_override_font_sizes/font_size = 72
+text = "0"
+horizontal_alignment = 1
